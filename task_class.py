@@ -25,21 +25,21 @@ class NumericReader(NonEmptyLineReader):
     def readword (self):
         while self.s == "\n":
             self.s = self.fd.readline()
-            if self.s == '': return ''
+            if self.s == '': return None
         s2 = self.s.split(" ", 1)
         s1 = s2[0].split("\n")[0]
         if len(s2) > 1:
             self.s = s2[1]
         else:
             self.s = self.fd.readline()
-            if self.s == '': return ''
+            if self.s == '': return None
         return s1    
     def readdigit (self):
         s1 = self.readword() 
-        if s1 == '': return ''
+        if s1 is None: return None
         while not s1.isdigit():
             s1 = self.readword()
-            if s1 == '': return ''
+            if s1 is None: return None
         return s1
 
 
